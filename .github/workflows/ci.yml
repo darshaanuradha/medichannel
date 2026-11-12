@@ -95,3 +95,20 @@ jobs:
           test -f .next/standalone/server.js
           test -d .next/static
           echo "Next.js standalone build verified"
+
+            - name: Prepare standalone deployment package
+        working-directory: frontend
+        run: |
+          mkdir -p .next/standalone/.next
+          cp -r .next/static .next/standalone/.next/static
+          if [ -d public ]; then
+            cp -r public .next/standalone/public
+          fi
+
+      - name: Upload frontend deployment artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: medichannel-frontend
+          path: frontend/.next/standalone/
+          if-no-files-found: error
+          retention-days: 7
