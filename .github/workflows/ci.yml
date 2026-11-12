@@ -111,4 +111,5 @@ jobs:
           name: medichannel-frontend
           path: frontend/.next/standalone/
           if-no-files-found: error
+          include-hidden-files: true
           retention-days: 7
