@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { apiDelete, apiGet, apiPost, apiPut } from "@/lib/api";
 
 interface CrudTestRecord {
@@ -26,22 +26,54 @@ export default function CrudTestPage() {
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
 
-    async function loadRecords() {
+    const loadRecords = useCallback(async () => {
         try {
             setError("");
+
             const data = await apiGet<CrudTestRecord[]>("/crud-tests");
+
             setRecords(data);
         } catch (err) {
             setError(
-                err instanceof Error ? err.message : "Failed to load records"
+                err instanceof Error
+                    ? err.message
+                    : "Failed to load records"
             );
         } finally {
             setLoading(false);
         }
-    }
+    }, []);
 
     useEffect(() => {
-        void loadRecords();
+        let active = true;
+
+        async function fetchRecords() {
+            try {
+                const data = await apiGet<CrudTestRecord[]>("/crud-tests");
+
+                if (active) {
+                    setRecords(data);
+                }
+            } catch (err) {
+                if (active) {
+                    setError(
+                        err instanceof Error
+                            ? err.message
+                            : "Failed to load records"
+                    );
+                }
+            } finally {
+                if (active) {
+                    setLoading(false);
+                }
+            }
+        }
+
+        void fetchRecords();
+
+        return () => {
+            active = false;
+        };
     }, []);
 
     function resetForm() {
@@ -83,7 +115,9 @@ export default function CrudTestPage() {
             await loadRecords();
         } catch (err) {
             setError(
-                err instanceof Error ? err.message : "Operation failed"
+                err instanceof Error
+                    ? err.message
+                    : "Operation failed"
             );
         } finally {
             setSaving(false);
@@ -114,10 +148,13 @@ export default function CrudTestPage() {
             }
 
             setMessage("Record deleted successfully.");
+
             await loadRecords();
         } catch (err) {
             setError(
-                err instanceof Error ? err.message : "Delete failed"
+                err instanceof Error
+                    ? err.message
+                    : "Delete failed"
             );
         }
     }
@@ -135,7 +172,9 @@ export default function CrudTestPage() {
 
                 <section className="mb-10 rounded-xl border border-gray-800 bg-gray-900 p-6">
                     <h2 className="mb-5 text-xl font-semibold">
-                        {editingId === null ? "Create Record" : `Edit Record #${editingId}`}
+                        {editingId === null
+                            ? "Create Record"
+                            : `Edit Record #${editingId}`}
                     </h2>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
@@ -143,6 +182,7 @@ export default function CrudTestPage() {
                             <label className="mb-2 block text-sm text-gray-300">
                                 Name
                             </label>
+
                             <input
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
@@ -157,6 +197,7 @@ export default function CrudTestPage() {
                             <label className="mb-2 block text-sm text-gray-300">
                                 Description
                             </label>
+
                             <textarea
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
@@ -220,7 +261,9 @@ export default function CrudTestPage() {
                     </div>
 
                     {loading ? (
-                        <p className="text-gray-400">Loading records...</p>
+                        <p className="text-gray-400">
+                            Loading records...
+                        </p>
                     ) : records.length === 0 ? (
                         <p className="text-gray-400">
                             No records found. Create your first record.
@@ -243,7 +286,9 @@ export default function CrudTestPage() {
 
                                         <p className="mt-2 text-xs text-gray-500">
                                             Created:{" "}
-                                            {new Date(record.createdAt).toLocaleString()}
+                                            {new Date(
+                                                record.createdAt
+                                            ).toLocaleString()}
                                         </p>
                                     </div>
 
