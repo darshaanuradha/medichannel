@@ -153,7 +153,7 @@ export default function BackendTest() {
 
                 {/* Application Header */}
                 <header>
-                    <h1 className="text-3xl font-bold text-white">
+                    <h1 className="text-2xl font-bold text-amber-900">
                         MediChannel
                     </h1>
 
