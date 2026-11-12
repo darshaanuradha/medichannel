@@ -19,7 +19,6 @@ interface StatusCardProps {
     status: ConnectionStatus;
 }
 
-// StatusCard is now outside BackendTest
 function StatusCard({ title, status }: StatusCardProps) {
     const isConnected = status.state === "connected";
     const isChecking = status.state === "checking";
@@ -69,8 +68,12 @@ export default function BackendTest() {
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
+        let active = true;
+
         async function checkConnections() {
             if (!API_URL) {
+                if (!active) return;
+
                 setBackend({
                     state: "failed",
                     message: "NEXT_PUBLIC_API_URL is not configured",
@@ -94,11 +97,15 @@ export default function BackendTest() {
 
                 const data: HealthResponse = await response.json();
 
+                if (!active) return;
+
                 setBackend({
                     state: "connected",
                     message: `${data.application ?? "Backend"} is running`,
                 });
             } catch (error) {
+                if (!active) return;
+
                 setBackend({
                     state: "failed",
                     message:
@@ -129,11 +136,15 @@ export default function BackendTest() {
                     throw new Error("Database is not connected");
                 }
 
+                if (!active) return;
+
                 setDatabase({
                     state: "connected",
                     message: `${data.database ?? "PostgreSQL"} is connected`,
                 });
             } catch (error) {
+                if (!active) return;
+
                 setDatabase({
                     state: "failed",
                     message:
@@ -144,7 +155,11 @@ export default function BackendTest() {
             }
         }
 
-        checkConnections();
+        void checkConnections();
+
+        return () => {
+            active = false;
+        };
     }, [API_URL]);
 
     return (
