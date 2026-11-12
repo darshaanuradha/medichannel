@@ -88,3 +88,10 @@ jobs:
       - name: Build frontend
         working-directory: frontend
         run: npm run build
+
+      - name: Verify standalone deployment output
+        working-directory: frontend
+        run: |
+          test -f .next/standalone/server.js
+          test -d .next/static
+          echo "Next.js standalone build verified"
