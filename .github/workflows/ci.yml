@@ -96,7 +96,7 @@ jobs:
           test -d .next/static
           echo "Next.js standalone build verified"
 
-            - name: Prepare standalone deployment package
+      - name: Prepare standalone deployment package
         working-directory: frontend
         run: |
           mkdir -p .next/standalone/.next
