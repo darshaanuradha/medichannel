@@ -19,6 +19,28 @@ jobs:
     name: Backend - Build and Test
     runs-on: ubuntu-latest
 
+    # Start a temporary PostgreSQL database for testing
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_DB: medichannel_test
+          POSTGRES_USER: medichannel_test
+          POSTGRES_PASSWORD: test_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U medichannel_test -d medichannel_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    # Spring Boot database configuration for CI
+    env:
+      DB_URL: jdbc:postgresql://localhost:5432/medichannel_test
+      DB_USERNAME: medichannel_test
+      DB_PASSWORD: test_password
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
