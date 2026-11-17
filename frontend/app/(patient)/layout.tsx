@@ -1,4 +1,6 @@
-import type { ReactNode } from "react";
+import DashboardLayout from "@/components/common/DashboardLayout";
+
+import { ReactNode } from "react";
 
 export default function PatientLayout({
     children,
@@ -6,14 +8,8 @@ export default function PatientLayout({
     children: ReactNode;
 }) {
     return (
-        <div className="patient-layout min-h-screen">
-            <header>
-                <h1>MediChannel - Patient Portal</h1>
-            </header>
-
-            <main>
-                {children}
-            </main>
-        </div>
+        <DashboardLayout role="patient" title="Patient Portal">
+            {children}
+        </DashboardLayout>
     );
 }

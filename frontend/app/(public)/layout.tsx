@@ -1,4 +1,5 @@
-import type { ReactNode } from "react";
+import { ReactNode } from "react";
+import Link from "next/link";
 
 export default function PublicLayout({
     children,
@@ -6,18 +7,38 @@ export default function PublicLayout({
     children: ReactNode;
 }) {
     return (
-        <div className="public-layout min-h-screen">
-            <header>
-                <h1>MediChannel</h1>
+        <div className="public-layout">
+
+            <header className="public-header">
+
+                <Link href="/" className="public-brand">
+                    <span className="brand-icon">M</span>
+                    MediChannel
+                </Link>
+
+                <nav>
+                    <Link href="/">Home</Link>
+                    <Link href="/login">Login</Link>
+
+                    <Link href="/register" className="primary-button">
+                        Get Started
+                    </Link>
+                </nav>
+
             </header>
 
-            <main>
-                {children}
-            </main>
+            <main>{children}</main>
 
-            <footer>
-                <p>© MediChannel. All rights reserved.</p>
-            </footer>
+            <FooterPlaceholder />
+
         </div>
+    );
+}
+
+function FooterPlaceholder() {
+    return (
+        <footer className="public-footer">
+            © {new Date().getFullYear()} MediChannel. All rights reserved.
+        </footer>
     );
 }

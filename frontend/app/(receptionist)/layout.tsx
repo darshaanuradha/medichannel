@@ -1,4 +1,6 @@
-import type { ReactNode } from "react";
+import DashboardLayout from "@/components/common/DashboardLayout";
+
+import { ReactNode } from "react";
 
 export default function ReceptionistLayout({
     children,
@@ -6,14 +8,8 @@ export default function ReceptionistLayout({
     children: ReactNode;
 }) {
     return (
-        <div className="receptionist-layout min-h-screen">
-            <header>
-                <h1>MediChannel - Receptionist Portal</h1>
-            </header>
-
-            <main>
-                {children}
-            </main>
-        </div>
+        <DashboardLayout role="receptionist" title="Receptionist Portal">
+            {children}
+        </DashboardLayout>
     );
 }

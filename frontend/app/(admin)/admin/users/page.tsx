@@ -1,3 +1,10 @@
+import BasicPage from "@/components/common/BasicPage";
+
 export default function AdminUsersPage() {
-    return null;
+    return (
+        <BasicPage
+            title="User Management"
+            description="Manage system users and their access."
+        />
+    );
 }

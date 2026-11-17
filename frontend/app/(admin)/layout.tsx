@@ -1,4 +1,6 @@
-import type { ReactNode } from "react";
+import DashboardLayout from "@/components/common/DashboardLayout";
+
+import { ReactNode } from "react";
 
 export default function AdminLayout({
     children,
@@ -6,14 +8,8 @@ export default function AdminLayout({
     children: ReactNode;
 }) {
     return (
-        <div className="admin-layout min-h-screen">
-            <header>
-                <h1>MediChannel - Administration Portal</h1>
-            </header>
-
-            <main>
-                {children}
-            </main>
-        </div>
+        <DashboardLayout role="admin" title="Administration Portal">
+            {children}
+        </DashboardLayout>
     );
 }
