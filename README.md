@@ -95,7 +95,7 @@ MediChannel lets patients book a doctor for a **physical examination** or an **o
 - Start a session, call the next patient, mark `COMPLETED` / `NO_SHOW`, end the session
 - Run online consultations: live chat, diagnosis summary, advice, and prescription
 
-### 🗂️ Manager (Channelling Centre)
+### 🗂️ Staff (Channelling Centre)
 
 - Manage specialisations, rooms, doctor profiles, and sessions (create, edit, **delay**, **cancel**)
 - Reception desk: mark patients `ARRIVED`, record payments, book walk-in patients
@@ -104,24 +104,24 @@ MediChannel lets patients book a doctor for a **physical examination** or an **o
 
 ### 🛡️ Admin (IT Administrator)
 
-- Create `DOCTOR` and `MANAGER` accounts; activate/deactivate accounts; reset staff passwords
+- Create `DOCTOR` and `STAFF` accounts; activate/deactivate accounts; reset staff passwords
 - View the immutable **audit log** (logins, account changes, cancellations, consultation-record access)
 
 ---
 
 ## 3. User Roles & Permissions
 
-Public registration always creates a `CUSTOMER`. `DOCTOR` and `MANAGER` accounts are created only by an `ADMIN`; the first `ADMIN` is created at start-up from environment variables. **Every permission is enforced on the server**, including WebSocket messages.
+Public registration always creates a `PATIENT`. `DOCTOR` and `STAFF` accounts are created only by an `ADMIN`; the first `ADMIN` is created at start-up from environment variables. **Every permission is enforced on the server**, including WebSocket messages.
 
 | Role         | Who              | Main Capabilities                                                                                       |
 | ------------ | ---------------- | ------------------------------------------------------------------------------------------------------- |
 | **Guest**    | Anyone           | Search doctors/sessions, view live availability, read notices, register, log in                         |
-| **CUSTOMER** | Patient          | Book/cancel own appointments, follow live queue, join own consultation, read own summary, give feedback |
+| **PATIENT**  | Patient          | Book/cancel own appointments, follow live queue, join own consultation, read own summary, give feedback |
 | **DOCTOR**   | Consultant       | Manage own sessions and queue, run consultations, write notes and prescriptions                         |
-| **MANAGER**  | Centre Manager   | Manage doctors, rooms, sessions, reception, payments, notices, feedback, reports                        |
+| **STAFF**    | Hospital Staff    | Manage doctors, rooms, sessions, reception, payments, notices, feedback, reports                        |
 | **ADMIN**    | IT Administrator | Manage staff accounts, view audit log and system dashboard                                              |
 
-> 🔒 **Privacy rule:** `ADMIN` and `MANAGER` can **never** read consultation notes, prescriptions, reasons for visit, or chat messages. Medical data is visible only to the patient and the treating doctor.
+> 🔒 **Privacy rule:** `ADMIN` and `STAFF` can **never** read consultation notes, prescriptions, reasons for visit, or chat messages. Medical data is visible only to the patient and the treating doctor.
 
 ---
 
@@ -377,7 +377,7 @@ Implemented with Spring Boot WebSocket support (STOMP); `wss://` in production.
 
 | ID        | Feature           | Description                                                                                        |
 | --------- | ----------------- | -------------------------------------------------------------------------------------------------- |
-| **RT-01** | Live queue        | "Now serving" number updates instantly for patients, doctor, and manager                           |
+| **RT-01** | Live queue        | "Now serving" number updates instantly for patients, doctor, and staff                             |
 | **RT-02** | Live availability | "Numbers left" updates after every booking or cancellation                                         |
 | **RT-03** | Consultation chat | Private doctor–patient chat with typing indicator and connection status; messages stored encrypted |
 | **RT-04** | Notifications     | Called, 3 numbers away, delayed, cancelled, consultation started, sent only to the affected user   |
@@ -575,7 +575,7 @@ Error responses use a consistent JSON format with correct status codes: `200`, `
 | ------------------------- | -------------------------------------------------- |
 | Authentication            | Register, login, logout, token handling            |
 | Users (Admin)             | Create staff, activate/deactivate, reset passwords |
-| Specialisations & Doctors | Public lists (cached) and manager CRUD             |
+| Specialisations & Doctors | Public lists (cached) and staff CRUD               |
 | Rooms & Sessions          | Create, edit, delay, cancel, search                |
 | Appointments              | Book, cancel, list own, reception check-in         |
 | Consultations             | Start/end, notes, prescriptions                    |
@@ -769,7 +769,7 @@ Avoid vague messages such as `update`, `changes`, `final`, `test`, or `new code`
 - [ ] Consultation management and online chat
 - [ ] Payments, feedback, and notices
 - [ ] Notifications and audit logging
-- [ ] Manager and admin dashboards and reports
+- [ ] Staff and admin dashboards and reports
 - [ ] Caching, compression, and Cache-Control headers
 - [ ] Automated testing (30+ test cases) and deployment workflow
 
