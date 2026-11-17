@@ -2,7 +2,7 @@ import DashboardLayout from "@/components/common/DashboardLayout";
 
 import { ReactNode } from "react";
 
-export default function ReceptionistLayout({
+export default function StaffLayout({
     children,
 }: {
     children: ReactNode;

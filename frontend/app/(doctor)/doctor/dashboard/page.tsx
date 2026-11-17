@@ -42,7 +42,7 @@ export default function DoctorDashboardPage() {
             </div>
 
             <div className="content-panel">
-                <h3>Today's Schedule</h3>
+                <h3>Today&apos;s Schedule</h3>
                 <p style={{ color: "#64748b", fontSize: "14px" }}>
                     Your appointment schedule will appear here.
                 </p>
