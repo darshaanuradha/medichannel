@@ -2,6 +2,8 @@
 
 MediChannel is a full-stack healthcare appointment management project built with a Next.js frontend, a Spring Boot backend, and a PostgreSQL database. The repository contains both the application foundation and the supporting project documentation for the MediChannel assignment.
 
+Live Website: http://18.140.113.216/
+
 ## Overview
 
 This project models a digital clinic workflow for:
@@ -39,12 +41,14 @@ medichannel/
 ## Tech stack
 
 ### Frontend
+
 - Next.js 16
 - React 19
 - TypeScript
 - Tailwind CSS
 
 ### Backend
+
 - Java 25 (configured in backend/pom.xml)
 - Spring Boot 4.1.2
 - Spring Web MVC
@@ -54,6 +58,7 @@ medichannel/
 - PostgreSQL JDBC
 
 ### Database
+
 - PostgreSQL 14+
 - SQL schema defined in `database/schema.sql`
 - Flyway migration in `backend/src/main/resources/db/migration/`
@@ -126,6 +131,7 @@ cd backend
 ```
 
 The Spring Boot app runs on:
+
 - http://localhost:8080
 
 ### 3) Start the frontend
@@ -139,25 +145,30 @@ npm run dev
 ```
 
 The Next.js app runs on:
+
 - http://localhost:3000
 
 ### 4) Verify the app
 
 Open:
+
 - http://localhost:3000 for the main health/status page
 - http://localhost:3000/crud-test for the CRUD demo page
 
 The frontend checks:
+
 - backend health at `/api/v1/health`
 - database connectivity at `/api/v1/db-health`
 
 ## API endpoint summary
 
 ### Backend health
+
 - `GET /api/v1/health`
 - `GET /api/v1/db-health`
 
 ### CRUD demo endpoints
+
 - `POST /api/v1/crud-tests`
 - `GET /api/v1/crud-tests`
 - `GET /api/v1/crud-tests/{id}`
@@ -202,4 +213,3 @@ Potential follow-up work includes:
 3. integrating secure encryption for sensitive personal data
 4. adding real admin dashboards and booking flows
 5. expanding API validation and unit/integration tests
-
