@@ -19,10 +19,9 @@ export default function AuthLayout({
             <div className="auth-card">
                 {children}
             </div>
-
-            <p className="auth-footer">
-                © {new Date().getFullYear()} MediChannel
-            </p>
+<p className="auth-footer">
+    © 2026 MediChannel
+</p>
 
         </div>
     );
