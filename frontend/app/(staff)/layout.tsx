@@ -8,7 +8,7 @@ export default function ReceptionistLayout({
     children: ReactNode;
 }) {
     return (
-        <DashboardLayout role="receptionist" title="Receptionist Portal">
+        <DashboardLayout role="staff" title="Staff Portal">
             {children}
         </DashboardLayout>
     );

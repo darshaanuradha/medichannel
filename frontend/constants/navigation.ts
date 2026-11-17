@@ -1,7 +1,7 @@
 export type UserRole =
     | "patient"
     | "doctor"
-    | "receptionist"
+    | "staff"
     | "admin";
 
 export interface NavigationItem {
@@ -47,20 +47,20 @@ export const navigationConfig: Record<UserRole, NavigationItem[]> = {
         },
     ],
 
-    receptionist: [
+    staff: [
         {
             label: "Dashboard",
-            href: "/receptionist/dashboard",
+            href: "/staff/dashboard",
             icon: "⌂",
         },
         {
             label: "Appointments",
-            href: "/receptionist/appointments",
+            href: "/staff/appointments",
             icon: "▣",
         },
         {
             label: "Patients",
-            href: "/receptionist/patients",
+            href: "/staff/patients",
             icon: "♙",
         },
     ],

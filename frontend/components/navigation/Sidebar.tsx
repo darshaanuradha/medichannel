@@ -17,7 +17,7 @@ interface SidebarProps {
 const roleNames: Record<UserRole, string> = {
     patient: "Patient Portal",
     doctor: "Doctor Portal",
-    receptionist: "Receptionist Portal",
+    staff: "Staff Portal",
     admin: "Administration",
 };
 
