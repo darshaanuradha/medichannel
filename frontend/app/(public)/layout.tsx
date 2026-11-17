@@ -1,3 +1,4 @@
+
 import { ReactNode } from "react";
 import Link from "next/link";
 
@@ -29,16 +30,10 @@ export default function PublicLayout({
 
             <main>{children}</main>
 
-            <FooterPlaceholder />
+            <footer className="public-footer">
+                © 2026 MediChannel. All rights reserved.
+            </footer>
 
         </div>
-    );
-}
-
-function FooterPlaceholder() {
-    return (
-        <footer className="public-footer">
-            © {new Date().getFullYear()} MediChannel. All rights reserved.
-        </footer>
     );
 }

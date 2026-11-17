@@ -445,3 +445,242 @@ button {
         font-size: 21px;
     }
 }
+
+/* Public navigation */
+
+.public-header {
+    height: 75px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-bottom: 1px solid var(--border);
+}
+
+.public-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.public-header nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    font-size: 14px;
+}
+
+.public-footer {
+    padding: 25px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    background: white;
+}
+
+/* Buttons */
+
+.primary-button,
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    transition: 0.2s;
+}
+
+.primary-button {
+    color: white;
+    background: var(--primary);
+}
+
+.primary-button:hover {
+    background: var(--primary-dark);
+}
+
+.secondary-button {
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    background: white;
+}
+
+/* Homepage */
+
+.hero {
+    min-height: 620px;
+    padding: 80px 9%;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 50px;
+    background: linear-gradient(135deg, #f0f6ff, #ffffff);
+}
+
+.hero-label {
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.hero-content h1 {
+    font-size: clamp(42px, 5vw, 64px);
+    line-height: 1.1;
+    margin: 22px 0;
+}
+
+.hero-content h1 span {
+    color: var(--primary);
+}
+
+.hero-content > p {
+    max-width: 520px;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.hero-visual {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    padding: 55px 30px;
+    text-align: center;
+    box-shadow: 0 15px 45px rgba(37, 99, 235, 0.08);
+}
+
+.hero-medical-icon {
+    font-size: 100px;
+    color: var(--primary);
+}
+
+.hero-visual h3 {
+    font-size: 22px;
+}
+
+.hero-visual p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* Authentication */
+
+.auth-container {
+    min-height: 100vh;
+    padding: 30px 15px;
+    background: #f1f5fb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-brand {
+    margin-bottom: 25px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.auth-brand a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 35px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.04);
+}
+
+.auth-card h2 {
+    font-size: 26px;
+    margin: 0 0 10px;
+}
+
+.auth-description {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.auth-form label {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.auth-form input {
+    padding: 13px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    margin-bottom: 8px;
+}
+
+.auth-form input:focus {
+    border-color: var(--primary);
+}
+
+.auth-switch {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.auth-switch a {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.auth-footer {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 25px;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 55px 7%;
+    }
+
+    .hero-visual {
+        padding: 35px 20px;
+    }
+
+    .public-header {
+        padding: 0 5%;
+    }
+
+    .public-header nav {
+        gap: 12px;
+        font-size: 12px;
+    }
+
+    .public-header .primary-button {
+        padding: 9px 12px;
+    }
+}
